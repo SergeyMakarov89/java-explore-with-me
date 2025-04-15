@@ -328,9 +328,8 @@ public class EventService {
         endpointHitDto.setIp(httpServletRequest.getRemoteAddr());
         endpointHitDto.setTimestamp(LocalDateTime.now());
         statsClientApp.createHit(endpointHitDto);
-        if (events != null || !events.isEmpty()) {
-            eventRepository.saveAll(events);
-        }
+
+        eventRepository.saveAll(events);
 
         return events.stream()
                 .map(EventMapper::toEventShortDto)
